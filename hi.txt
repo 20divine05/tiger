@@ -132,13 +132,24 @@ public class AppTest {
 Step 11 — Build and Run Project
 mvn clean install
 mvn exec:java -Dexec.mainClass="com.example.app.App"
+
 Step 12 — Install Jenkins
 sudo apt install fontconfig openjdk-21-jre -y
 wget https://pkg.jenkins.io/debian-stable/binary/jenkins_2.504.1_all.deb
 sudo dpkg -i jenkins_2.504.1_all.deb
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+Initialize Git
+git init
+Step 25 — Add GitHub Repository
+git remote add origin https://github.com/20divine05/lab5-pp.git
+Step 26 — Configure Git Username
+git config --global user.name "lion"
+Step 27 — Configure Git Email
+git config --global user.email "your_email@gmail.com"
 Step 13 — Create Jenkinsfile
+nano Jenkinsfile
 pipeline {
  agent any
  tools {
@@ -174,7 +185,10 @@ pipeline {
  }
  }
 }
-
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git push -u origin main
 
 Step 14 — Configure Jenkins Pipeline
 1. Open Jenkins → http://localhost:8080
